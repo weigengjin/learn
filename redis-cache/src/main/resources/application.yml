@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    username: root
+    password: wei
+    url: jdbc:mysql://localhost:3306/dev?useUnicode=true&characterEncoding=UTF-8&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 8
+        min-idle: 5
+
+
+mybatis:
+  mapper-locations: classpath:mapper/**/*Mapper.xml
+  type-aliases-package: org.wei.rediscache.**.domain
+
+logging:
+  level:
+    org:
+      wei:
+        rediscache:
+          service:
+            impl: debug
