@@ -1,0 +1,2 @@
+# learn
+ study after graduated
