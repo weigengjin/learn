@@ -6,18 +6,21 @@ import java.util.concurrent.FutureTask;
 public class MyInvoker {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        // MyThread t1 = new MyThread("thread1");
-        // MyThread t2 = new MyThread("thread2");
-        // t1.start();
-        // t2.start();
+        // MyThread Test
+        MyThread t1 = new MyThread("thread1");
+        MyThread t2 = new MyThread("thread2");
+        t1.start();
+        t2.start();
 
-        // MyRunnable r1 = new MyRunnable("run1");
-        // MyRunnable r2 = new MyRunnable("run2");
-        // Thread thread1 = new Thread(r1);
-        // Thread thread2 = new Thread(r2);
-        // thread1.start();
-        // thread2.start();
+        // MyRunnable Test
+        MyRunnable r1 = new MyRunnable("run1");
+        MyRunnable r2 = new MyRunnable("run2");
+        Thread thread1 = new Thread(r1);
+        Thread thread2 = new Thread(r2);
+        thread1.start();
+        thread2.start();
 
+        // MyCallable Test
         MyCallable c1 = new MyCallable("call1");
         MyCallable c2 = new MyCallable("call2");
         FutureTask<String> ft1 = new FutureTask<>(c1);
