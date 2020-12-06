@@ -21,6 +21,7 @@ public class RunnableReturn implements Runnable{
         result = taskResult;
     }
 
+    // Return "OK"
     private String task() throws InterruptedException {
         Thread.sleep(1000);
         return "Ojbk";
@@ -34,10 +35,7 @@ public class RunnableReturn implements Runnable{
         RunnableReturn rr = new RunnableReturn();
         Thread thread = new Thread(rr);
         thread.start();
-        String result;
-        while ((result = rr.getResult()) == null) {
-            System.out.println("waiting...");
-        }
+        String result  = rr.getResult();
         System.out.println("result=" + result);
     }
 }

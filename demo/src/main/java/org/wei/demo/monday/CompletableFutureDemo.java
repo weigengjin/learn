@@ -11,7 +11,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 public class CompletableFutureDemo {
 
 
-    public ThreadPoolTaskExecutor getExecutor() {
+    public static ThreadPoolTaskExecutor getExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.initialize();
         int i = Runtime.getRuntime().availableProcessors();//获取到服务器的cpu内核
