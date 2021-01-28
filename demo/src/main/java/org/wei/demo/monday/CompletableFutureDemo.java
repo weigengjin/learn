@@ -26,7 +26,6 @@ public class CompletableFutureDemo {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         new CompletableFutureDemo().test();
-
         final long time1 = System.currentTimeMillis();
         final CompletableFuture<String> future1 = CompletableFuture.supplyAsync(() -> {
             try {

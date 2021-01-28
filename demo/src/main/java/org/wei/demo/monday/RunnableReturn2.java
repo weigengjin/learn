@@ -9,8 +9,13 @@ import java.util.concurrent.locks.LockSupport;
 @NoArgsConstructor
 public class RunnableReturn2 implements Runnable {
 
-    private String result;
+    private volatile String result;
     private Thread blockedThread;
+
+    RunnableReturn2(Thread thread) {
+        blockedThread = thread;
+    }
+
 
     @Override
     public void run() {
@@ -44,7 +49,7 @@ public class RunnableReturn2 implements Runnable {
      * @see FutureTask#get()
      */
     public static void main(String[] args) {
-        RunnableReturn2 rr = new RunnableReturn2();
+        RunnableReturn2 rr = new RunnableReturn2(Thread.currentThread());
         Thread thread = new Thread(rr);
         thread.start();
         String result = rr.get();

@@ -24,18 +24,18 @@ public class RunnableReturn implements Runnable{
     // Return "OK"
     private String task() throws InterruptedException {
         Thread.sleep(1000);
-        return "Ojbk";
+        return "Ok";
     }
 
     /**
      * @see FutureTask#get()
-     *
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         RunnableReturn rr = new RunnableReturn();
         Thread thread = new Thread(rr);
         thread.start();
-        String result  = rr.getResult();
+        thread.join();
+        String result = rr.getResult();
         System.out.println("result=" + result);
     }
 }
