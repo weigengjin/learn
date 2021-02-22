@@ -1,14 +1,19 @@
 package org.wei.demo.monday;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
 
 public class MyInvoker {
+    static Map<Integer, String> inheritableThreadLocal = new HashMap<>();
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
+        inheritableThreadLocal.put(1, "1");
         // MyThread Test
         MyThread t1 = new MyThread("thread1");
         MyThread t2 = new MyThread("thread2");
+        t1.setPriority(1);
         t1.start();
         t2.start();
 
@@ -35,5 +40,8 @@ public class MyInvoker {
         final long end = System.currentTimeMillis();
         System.out.println("time spend: " + (end - start)/1000);
 
+        new Thread(() -> {
+            inheritableThreadLocal.get("");
+        });
     }
 }
