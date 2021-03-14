@@ -11,6 +11,7 @@ public class TableSize {
 
     public static void main(String[] args) {
         System.out.println(tableSizeFor(7));
+
     }
 
     static final int tableSizeFor(int cap) { // cap = 7
@@ -23,7 +24,7 @@ public class TableSize {
                          //           n = 0 0000000 00000000 00000000 00000111
         n |= n >>> 8;
         n |= n >>> 16;
-        return (n < 0) ? 1 : (n >= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;
+        return (n < 0) ? 1 : (n >= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;// 00001000
     }
 
 }
