@@ -1,4 +1,4 @@
-package org.wei.demo.monday;
+package org.wei.demo.async;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;

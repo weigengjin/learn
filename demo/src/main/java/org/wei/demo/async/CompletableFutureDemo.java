@@ -1,9 +1,7 @@
-package org.wei.demo.monday;
+package org.wei.demo.async;
 
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ThreadPoolExecutor;

@@ -1,4 +1,4 @@
-package org.wei.demo.monday1;
+package org.wei.demo.async;
 
 import java.util.HashMap;
 import java.util.Iterator;

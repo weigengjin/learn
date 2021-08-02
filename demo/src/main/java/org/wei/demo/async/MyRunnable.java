@@ -1,11 +1,12 @@
-package org.wei.demo.monday;
+package org.wei.demo.async;
 
-public class MyThread extends Thread {
+
+public class MyRunnable implements Runnable {
 
     private final String threadName;
 
-    public MyThread(String threadName) {
-        this.threadName = threadName;
+    public MyRunnable(String name) {
+        this.threadName = name;
     }
 
     @Override
