@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.wei.demo.dao.mapper.PersonMapper">
+
+    <select id="getOne" resultType="org.wei.demo.dao.domain.Person">
+        SELECT *
+        FROM person
+        WHERE id = #{id}
+    </select>
+
+    <update id="updateAge">
+        UPDATE `person`
+        SET `age`=#{age}
+        WHERE `id` = #{id}
+          AND `name` = #{name}
+    </update>
+
+</mapper>
