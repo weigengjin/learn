@@ -8,6 +8,6 @@ public interface PersonMapper {
 
     Person getOne(int id);
 
-    int updateAge(int id, String name, int age);
+    int updateAge(int id, int oldAge, int newAge);
 
 }

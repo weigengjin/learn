@@ -1,39 +1,47 @@
 package org.wei.demo.mysql.mvcc;
 
-
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.wei.demo.dao.domain.Person;
 import org.wei.demo.dao.mapper.PersonMapper;
 
-@Slf4j
 @Component
 public class RetryDemo {
 
     @Autowired
     private PersonMapper personMapper;
 
+    /**
+     * <ol>
+     *     <li>获取id为4,name为"tom"的用户的当前信息</li>
+     *     <li>尝试CAS方式更新年龄</li>
+     *     <li>失败则重试，最多三次</li>
+     * </ol>
+     */
     @Transactional
     public void tryUpdate() throws InterruptedException {
-        int tryTime = 2;
-        for (;;) {
-            Person person = personMapper.getOne(5);
-            System.out.println(person);
-            if (tryTime == 2) {
+        int tryTime = 0;
+        while (tryTime < 3) {
+            Person person = personMapper.getOne(4);
+            System.out.println("获取id为4的person信息:" + person);
+            if (tryTime == 0) {
                 System.out.println("sleep!");
                 Thread.sleep(10000);
             }
-            log.debug("person:{}", person);
-            int row = personMapper.updateAge(person.getId(), person.getName(), person.getAge() + 1);
-            if (row == 1 || tryTime == 0) {
-                System.out.println("更新成功");
+            // UPDATE `person` SET `age`=#{newAge} WHERE `id`=#{id} AND `age`=#{oldAge}
+            int row = personMapper.updateAge(person.getId(), person.getAge(), person.getAge() + 1);
+            if (row == 1) {
+                System.out.println("更新成功，新的person信息:");
+                Person afterUpdate = personMapper.getOne(4);
+                System.out.println(afterUpdate);
                 break;
             } else {
-                System.out.println("更新失败，重试中！");
-                log.debug("更新失败，重试中！");
-                tryTime--;
+                tryTime++;
+                System.out.println("更新失败，重试中！重试第" + tryTime + "次");
+            }
+            if (tryTime == 3) {
+                System.out.println("重试次数耗尽，程序结束");
             }
         }
     }

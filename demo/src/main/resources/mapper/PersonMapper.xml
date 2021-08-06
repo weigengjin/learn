@@ -2,6 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.wei.demo.dao.mapper.PersonMapper">
 
+<!--
+CREATE TABLE `person` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `age` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+-->
+
     <select id="getOne" resultType="org.wei.demo.dao.domain.Person">
         SELECT *
         FROM person
@@ -10,9 +19,9 @@
 
     <update id="updateAge">
         UPDATE `person`
-        SET `age`=#{age}
+        SET `age`=#{newAge}
         WHERE `id` = #{id}
-          AND `name` = #{name}
+          AND `age` = #{oldAge}
     </update>
 
 </mapper>
