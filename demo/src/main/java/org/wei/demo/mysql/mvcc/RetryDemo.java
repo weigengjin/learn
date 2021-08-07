@@ -14,9 +14,9 @@ public class RetryDemo {
 
     /**
      * <ol>
-     *     <li>获取id为4,name为"tom"的用户的当前信息</li>
-     *     <li>尝试CAS方式更新年龄</li>
-     *     <li>失败则重试，最多三次</li>
+     *     <li>获取id为4, name为"tom"的用户的当前age</li>
+     *     <li>尝试CAS方式更新年龄：当且仅当age为上一步中获取的age时能成功</li>
+     *     <li>失败则重试，最多3次</li>
      * </ol>
      */
     @Transactional
@@ -26,7 +26,7 @@ public class RetryDemo {
             Person person = personMapper.getOne(4);
             System.out.println("获取id为4的person信息:" + person);
             if (tryTime == 0) {
-                System.out.println("sleep!");
+                System.out.println("first sleep!");
                 Thread.sleep(10000);
             }
             // UPDATE `person` SET `age`=#{newAge} WHERE `id`=#{id} AND `age`=#{oldAge}
