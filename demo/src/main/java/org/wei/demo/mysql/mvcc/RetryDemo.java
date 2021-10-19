@@ -14,13 +14,14 @@ public class RetryDemo {
 
     /**
      * <ol>
-     *     <li>获取id为4, name为"tom"的用户的当前age</li>
+     *     <li>获取id为4的用户的当前age</li>
      *     <li>尝试CAS方式更新年龄：当且仅当age为上一步中获取的age时能成功</li>
      *     <li>失败则重试，最多3次</li>
      * </ol>
      */
     @Transactional
     public void tryUpdate() throws InterruptedException {
+        
         int tryTime = 0;
         while (tryTime < 3) {
             Person person = personMapper.getOne(4);
